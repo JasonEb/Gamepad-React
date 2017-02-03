@@ -1,7 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './app.jsx'
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root')
-  ReactDOM.render(<h1>Test</h1>, root)
+
+  //  initialize
+
+  ReactDOM.render(<App />, root)
 })
