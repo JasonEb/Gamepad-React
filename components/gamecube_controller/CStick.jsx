@@ -1,6 +1,6 @@
 import React from 'react'
 
-class AnalogStick extends React.Component {
+class CStick extends React.Component {
   componentDidMount () {
     this.updateCanvas()
   }
@@ -9,11 +9,11 @@ class AnalogStick extends React.Component {
     this.updateCanvas()
   }
   updateCanvas () {
-    const ctx = this.refs.analogStick.getContext('2d')
+    const ctx = this.refs.cStick.getContext('2d')
     const { xAxis, yAxis } = this.props
 
     ctx.clearRect(0, 0, 100, 100)
-    ctx.fillStyle = 'darkgrey'
+    ctx.fillStyle = 'goldenrod'
     ctx.fillRect(0, 0, 100, 100)
 
     let circle = new Path2D()
@@ -23,12 +23,12 @@ class AnalogStick extends React.Component {
     x = x + x * xAxis
     y = y + y * yAxis
     circle.arc(x, y, 15, 0, 2 * Math.PI)
-    ctx.fillStyle = 'grey'
+    ctx.fillStyle = 'yellow'
     ctx.fill(circle)
   }
   render () {
-    return <canvas ref="analogStick" width={100} height={100}/>
+    return <canvas ref="cStick" width={100} height={100}/>
   }
 }
 
-export default AnalogStick
+export default CStick

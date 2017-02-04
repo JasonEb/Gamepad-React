@@ -21775,6 +21775,10 @@
 	
 	var _AnalogStick2 = _interopRequireDefault(_AnalogStick);
 	
+	var _CStick = __webpack_require__(185);
+	
+	var _CStick2 = _interopRequireDefault(_CStick);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21799,8 +21803,13 @@
 	        border: '1px solid black',
 	        borderRadius: '2.5em',
 	        width: '40em',
-	        height: '20em'
-	      };
+	        height: '20em',
+	        padding: '1em 1em 1em 1em' };
+	
+	      var baxRow = { display: 'flex',
+	        width: '10em',
+	        justifyContent: 'space-around' };
+	
 	      var _props$gamepad = this.props.gamepad,
 	          buttons = _props$gamepad.buttons,
 	          axes = _props$gamepad.axes;
@@ -21808,9 +21817,14 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { style: padStyle },
-	        _react2.default.createElement(_BButton2.default, { button: buttons[2] }),
-	        _react2.default.createElement(_AButton2.default, { button: buttons[1] }),
-	        _react2.default.createElement(_AnalogStick2.default, { xAxis: axes[0], yAxis: axes[1] })
+	        _react2.default.createElement(_AnalogStick2.default, { xAxis: axes[0], yAxis: axes[1] }),
+	        _react2.default.createElement(_CStick2.default, { xAxis: axes[5], yAxis: axes[2] }),
+	        _react2.default.createElement(
+	          'div',
+	          { style: baxRow },
+	          _react2.default.createElement(_BButton2.default, { button: buttons[2] }),
+	          _react2.default.createElement(_AButton2.default, { button: buttons[1] })
+	        )
 	      );
 	    }
 	  }]);
@@ -21998,7 +22012,6 @@
 	    key: 'componentDidUpdate',
 	    value: function componentDidUpdate() {
 	      this.updateCanvas();
-	      console.log("updating ...");
 	    }
 	  }, {
 	    key: 'updateCanvas',
@@ -22010,7 +22023,7 @@
 	
 	
 	      ctx.clearRect(0, 0, 100, 100);
-	      ctx.fillStyle = 'white';
+	      ctx.fillStyle = 'darkgrey';
 	      ctx.fillRect(0, 0, 100, 100);
 	
 	      var circle = new Path2D();
@@ -22034,6 +22047,84 @@
 	}(_react2.default.Component);
 	
 	exports.default = AnalogStick;
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CStick = function (_React$Component) {
+	  _inherits(CStick, _React$Component);
+	
+	  function CStick() {
+	    _classCallCheck(this, CStick);
+	
+	    return _possibleConstructorReturn(this, (CStick.__proto__ || Object.getPrototypeOf(CStick)).apply(this, arguments));
+	  }
+	
+	  _createClass(CStick, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.updateCanvas();
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate() {
+	      this.updateCanvas();
+	    }
+	  }, {
+	    key: 'updateCanvas',
+	    value: function updateCanvas() {
+	      var ctx = this.refs.cStick.getContext('2d');
+	      var _props = this.props,
+	          xAxis = _props.xAxis,
+	          yAxis = _props.yAxis;
+	
+	
+	      ctx.clearRect(0, 0, 100, 100);
+	      ctx.fillStyle = 'goldenrod';
+	      ctx.fillRect(0, 0, 100, 100);
+	
+	      var circle = new Path2D();
+	      var x = 100 / 2;
+	      var y = 100 / 2;
+	
+	      x = x + x * xAxis;
+	      y = y + y * yAxis;
+	      circle.arc(x, y, 15, 0, 2 * Math.PI);
+	      ctx.fillStyle = 'yellow';
+	      ctx.fill(circle);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('canvas', { ref: 'cStick', width: 100, height: 100 });
+	    }
+	  }]);
+	
+	  return CStick;
+	}(_react2.default.Component);
+	
+	exports.default = CStick;
 
 /***/ }
 /******/ ]);
