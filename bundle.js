@@ -22016,15 +22016,31 @@
 	  }, {
 	    key: 'updateCanvas',
 	    value: function updateCanvas() {
+	      // clear canvas
+	      // draw bg rect
+	      // draw octagon
+	      // draw circle
 	      var ctx = this.refs.analogStick.getContext('2d');
 	      var _props = this.props,
 	          xAxis = _props.xAxis,
 	          yAxis = _props.yAxis;
 	
-	
 	      ctx.clearRect(0, 0, 100, 100);
 	      ctx.fillStyle = 'darkgrey';
 	      ctx.fillRect(0, 0, 100, 100);
+	
+	      // octagon
+	      var octagon = new Path2D();
+	      var size = 45;
+	      var Xcenter = 50;
+	      var Ycenter = 50;
+	      octagon.moveTo(Xcenter + size * Math.cos(0), Ycenter + size * Math.sin(0));
+	      for (var i = 1; i <= 8; i += 1) {
+	        octagon.lineTo(Xcenter + size * Math.cos(i * 2 * Math.PI / 8), Ycenter + size * Math.sin(i * 2 * Math.PI / 8));
+	      }
+	      ctx.strokeStyle = 'black';
+	      ctx.lineWidth = 1;
+	      ctx.stroke(octagon);
 	
 	      var circle = new Path2D();
 	      var x = 100 / 2;
@@ -22034,7 +22050,9 @@
 	      y = y + y * yAxis;
 	      circle.arc(x, y, 15, 0, 2 * Math.PI);
 	      ctx.fillStyle = 'grey';
+	      ctx.globalAlpha = 0.90;
 	      ctx.fill(circle);
+	      ctx.globalAlpha = 1;
 	    }
 	  }, {
 	    key: 'render',
@@ -22094,15 +22112,31 @@
 	  }, {
 	    key: 'updateCanvas',
 	    value: function updateCanvas() {
+	      // clear canvas
+	      // draw bg rect
+	      // draw octagon
+	      // draw circle
 	      var ctx = this.refs.cStick.getContext('2d');
 	      var _props = this.props,
 	          xAxis = _props.xAxis,
 	          yAxis = _props.yAxis;
 	
-	
 	      ctx.clearRect(0, 0, 100, 100);
 	      ctx.fillStyle = 'goldenrod';
 	      ctx.fillRect(0, 0, 100, 100);
+	
+	      // octagon
+	      var octagon = new Path2D();
+	      var size = 45;
+	      var Xcenter = 50;
+	      var Ycenter = 50;
+	      octagon.moveTo(Xcenter + size * Math.cos(0), Ycenter + size * Math.sin(0));
+	      for (var i = 1; i <= 8; i += 1) {
+	        octagon.lineTo(Xcenter + size * Math.cos(i * 2 * Math.PI / 8), Ycenter + size * Math.sin(i * 2 * Math.PI / 8));
+	      }
+	      ctx.strokeStyle = 'black';
+	      ctx.lineWidth = 1;
+	      ctx.stroke(octagon);
 	
 	      var circle = new Path2D();
 	      var x = 100 / 2;
@@ -22112,7 +22146,9 @@
 	      y = y + y * yAxis;
 	      circle.arc(x, y, 15, 0, 2 * Math.PI);
 	      ctx.fillStyle = 'yellow';
+	      ctx.globalAlpha = 0.85;
 	      ctx.fill(circle);
+	      ctx.globalAlpha = 1;
 	    }
 	  }, {
 	    key: 'render',
