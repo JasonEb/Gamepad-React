@@ -5,7 +5,6 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = { controllers: {}, pollId: 0 }
-    this.rAF = window.mozRequestAnimationFrame || window.requestAnimationFrame
     this.connectHandler = this.connectHandler.bind(this)
     this.disconnectHandler = this.disconnectHandler.bind(this)
     this.addGamepad = this.addGamepad.bind(this)
@@ -43,7 +42,8 @@ class App extends React.Component {
   }
 
   initializeSession () {
-    let pollId = setInterval(this.pollGamepads)
+    // let pollId = setInterval(this.pollGamepads)
+    let pollId = requestAnimationFrame(this.pollGamepads)
     this.setState({pollId})
   }
 
@@ -55,7 +55,8 @@ class App extends React.Component {
 
   disconnectHandler (e) {
     console.log('Disconnected')
-    clearInterval(this.state.pollId)
+    // clearInterval(this.state.pollId)
+    window.cancelAnimationFrame(this.state.pollId)
   }
 
   pollGamepads () {
@@ -71,6 +72,7 @@ class App extends React.Component {
         }
       }
     }
+    requestAnimationFrame(this.pollGamepads)
   }
 
   render () {

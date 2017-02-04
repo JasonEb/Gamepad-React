@@ -8,3 +8,5 @@ Y : 3,
 L : 4,
 R : 5,
 Z : 7,
+
+Analog Stick : Axes x, y = 0, 1
