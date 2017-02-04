@@ -3,12 +3,14 @@ import React from 'react'
 class AButton extends React.Component {
   render () {
     const {button} = this.props
-    let size = button.pressed ? '3.5em' : '4em'
+    let size = '4em'
+    let opacity = button.pressed ? '1.0' : '0.75'
     let outerStyle = { backgroundColor: 'darkCyan',
                        borderRadius: '10em',
                        fontSize: 'large',
                        width: size,
                        height: size,
+                       opacity,
                        display: 'table'}
     let innerStyle = { display: 'table-cell',
                        textAlign: 'center',

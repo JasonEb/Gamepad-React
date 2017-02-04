@@ -1,28 +1,28 @@
 import React from 'react'
 
-class BButton extends React.Component {
+class YButton extends React.Component {
   render () {
     const {button} = this.props
     let size = '3em'
     let opacity = button.pressed ? '1.0' : '0.75'
-    let outerStyle = { backgroundColor: 'red',
-                       borderRadius: '10em',
+    let outerStyle = { backgroundColor: 'grey',
+                       borderRadius: '1em',
                        fontSize: 'large',
-                       width: size,
-                       height: size,
+                       width: '3em',
+                       height: '2em',
                        position: 'relative',
-                       bottom: '-1em',
+                       right: '-0.625em',
                        opacity,
                        display: 'table'}
     let innerStyle = { display: 'table-cell',
                        textAlign: 'center',
                        verticalAlign: 'middle',
-                       color: 'aqua'}
+                       color: 'lightgrey'}
 
-    return <div id="a-button" style={outerStyle}>
-      <p style={innerStyle}>B</p>
+    return <div id="y-button" style={outerStyle}>
+      <p style={innerStyle}>Y</p>
     </div>
   }
 }
 
-export default BButton
+export default YButton

@@ -12,7 +12,7 @@ class LButton extends React.Component {
                        textAlign: 'center',
                        opacity,
                        display: 'table'}
-    let innerStyle = { color: 'lightgrey'}
+    let innerStyle = { color: 'lightgrey' }
 
     return <div id="l-button" style={outerStyle}>
       <div className="lButton" style={innerStyle}>L</div>

@@ -21783,6 +21783,14 @@
 	
 	var _ZButton2 = _interopRequireDefault(_ZButton);
 	
+	var _XButton = __webpack_require__(189);
+	
+	var _XButton2 = _interopRequireDefault(_XButton);
+	
+	var _YButton = __webpack_require__(190);
+	
+	var _YButton2 = _interopRequireDefault(_YButton);
+	
 	var _AnalogStick = __webpack_require__(184);
 	
 	var _AnalogStick2 = _interopRequireDefault(_AnalogStick);
@@ -21814,12 +21822,15 @@
 	      var padStyle = { backgroundColor: 'darkslategray',
 	        border: '1px solid black',
 	        borderRadius: '2.5em',
-	        width: '40em',
+	        width: '480px',
 	        height: '20em',
 	        padding: '1em 1em 1em 1em' };
 	      var baxRow = { display: 'flex',
-	        width: '10em',
-	        justifyContent: 'space-around' };
+	        width: '200px',
+	        justifyContent: 'center' };
+	      var yRow = { display: 'flex',
+	        width: '200px',
+	        justifyContent: 'center' };
 	      var shoulderRow = { display: 'flex',
 	        width: '200px',
 	        justifyContent: 'space-around' };
@@ -21841,9 +21852,15 @@
 	        _react2.default.createElement(_CStick2.default, { xAxis: axes[5], yAxis: axes[2] }),
 	        _react2.default.createElement(
 	          'div',
+	          { style: yRow },
+	          _react2.default.createElement(_YButton2.default, { button: buttons[3] })
+	        ),
+	        _react2.default.createElement(
+	          'div',
 	          { style: baxRow },
 	          _react2.default.createElement(_BButton2.default, { button: buttons[2] }),
-	          _react2.default.createElement(_AButton2.default, { button: buttons[1] })
+	          _react2.default.createElement(_AButton2.default, { button: buttons[1] }),
+	          _react2.default.createElement(_XButton2.default, { button: buttons[0] })
 	        )
 	      );
 	    }
@@ -21892,12 +21909,14 @@
 	    value: function render() {
 	      var button = this.props.button;
 	
-	      var size = button.pressed ? '3.5em' : '4em';
+	      var size = '4em';
+	      var opacity = button.pressed ? '1.0' : '0.75';
 	      var outerStyle = { backgroundColor: 'darkCyan',
 	        borderRadius: '10em',
 	        fontSize: 'large',
 	        width: size,
 	        height: size,
+	        opacity: opacity,
 	        display: 'table' };
 	      var innerStyle = { display: 'table-cell',
 	        textAlign: 'center',
@@ -21966,6 +21985,8 @@
 	        fontSize: 'large',
 	        width: size,
 	        height: size,
+	        position: 'relative',
+	        bottom: '-1em',
 	        opacity: opacity,
 	        display: 'table' };
 	      var innerStyle = { display: 'table-cell',
@@ -22383,6 +22404,141 @@
 	}(_react2.default.Component);
 	
 	exports.default = ZButton;
+
+/***/ },
+/* 189 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var XButton = function (_React$Component) {
+	  _inherits(XButton, _React$Component);
+	
+	  function XButton() {
+	    _classCallCheck(this, XButton);
+	
+	    return _possibleConstructorReturn(this, (XButton.__proto__ || Object.getPrototypeOf(XButton)).apply(this, arguments));
+	  }
+	
+	  _createClass(XButton, [{
+	    key: 'render',
+	    value: function render() {
+	      var button = this.props.button;
+	
+	      var opacity = button.pressed ? '1.0' : '0.75';
+	      var outerStyle = { backgroundColor: 'grey',
+	        borderRadius: '1em',
+	        fontSize: 'large',
+	        width: '2em',
+	        height: '3em',
+	        opacity: opacity };
+	      var innerStyle = { color: 'lightgrey', textAlign: 'center' };
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'x-button', style: outerStyle },
+	        _react2.default.createElement(
+	          'p',
+	          { style: innerStyle },
+	          'X'
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return XButton;
+	}(_react2.default.Component);
+	
+	exports.default = XButton;
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var YButton = function (_React$Component) {
+	  _inherits(YButton, _React$Component);
+	
+	  function YButton() {
+	    _classCallCheck(this, YButton);
+	
+	    return _possibleConstructorReturn(this, (YButton.__proto__ || Object.getPrototypeOf(YButton)).apply(this, arguments));
+	  }
+	
+	  _createClass(YButton, [{
+	    key: 'render',
+	    value: function render() {
+	      var button = this.props.button;
+	
+	      var size = '3em';
+	      var opacity = button.pressed ? '1.0' : '0.75';
+	      var outerStyle = { backgroundColor: 'grey',
+	        borderRadius: '1em',
+	        fontSize: 'large',
+	        width: '3em',
+	        height: '2em',
+	        position: 'relative',
+	        right: '-0.625em',
+	        opacity: opacity,
+	        display: 'table' };
+	      var innerStyle = { display: 'table-cell',
+	        textAlign: 'center',
+	        verticalAlign: 'middle',
+	        color: 'lightgrey' };
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'y-button', style: outerStyle },
+	        _react2.default.createElement(
+	          'p',
+	          { style: innerStyle },
+	          'Y'
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return YButton;
+	}(_react2.default.Component);
+	
+	exports.default = YButton;
 
 /***/ }
 /******/ ]);
