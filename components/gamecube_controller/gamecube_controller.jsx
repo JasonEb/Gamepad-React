@@ -14,7 +14,7 @@ class GameCubeController extends React.Component {
     let padStyle = { backgroundColor: 'darkslategray',
                       border: '1px solid black',
                       borderRadius: '2.5em',
-                      width: '480px',
+                      width: '200px',
                       height: '20em',
                       padding: '1em 1em 1em 1em'}
     let baxRow = { display: 'flex',

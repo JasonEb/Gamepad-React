@@ -11,8 +11,8 @@ class Gamepad extends React.Component {
     })
     let _axes = axes.map((axe, idx) => {
       return <div key={idx}>
+        <pre>Axe {idx} : {axe.toPrecision(2)}</pre>
         <progress style={progressStyle} max={2} value={axe + 1} />
-        <span>Axe {idx} : {axe.toPrecision(2)}</span>
       </div>
     })
     let axesStyle = {display: 'flex', justifyContent: 'space-around', flexDirection: 'column'}
@@ -20,13 +20,12 @@ class Gamepad extends React.Component {
     let buttonsStyle={display: 'flex', justifyContent: 'space-around', flexDirection: 'column'}
     return (
       <div id="gamepad">
-        <h1>{gamepad.id}</h1>
         <GameCubeController gamepad={gamepad} />
+        <div style={axesStyle}>Axes
+        {_axes}
+        </div>
         <div>Buttons
           {_buttons}
-        </div>
-        <div style={axesStyle}>Axes
-          {_axes}
         </div>
       </div>
     )

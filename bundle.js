@@ -21702,15 +21702,15 @@
 	        return _react2.default.createElement(
 	          'div',
 	          { key: idx },
-	          _react2.default.createElement('progress', { style: progressStyle, max: 2, value: axe + 1 }),
 	          _react2.default.createElement(
-	            'span',
+	            'pre',
 	            null,
 	            'Axe ',
 	            idx,
 	            ' : ',
 	            axe.toPrecision(2)
-	          )
+	          ),
+	          _react2.default.createElement('progress', { style: progressStyle, max: 2, value: axe + 1 })
 	        );
 	      });
 	      var axesStyle = { display: 'flex', justifyContent: 'space-around', flexDirection: 'column' };
@@ -21719,23 +21719,18 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { id: 'gamepad' },
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          gamepad.id
-	        ),
 	        _react2.default.createElement(_gamecube_controller2.default, { gamepad: gamepad }),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          'Buttons',
-	          _buttons
-	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { style: axesStyle },
 	          'Axes',
 	          _axes
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          'Buttons',
+	          _buttons
 	        )
 	      );
 	    }
@@ -21822,7 +21817,7 @@
 	      var padStyle = { backgroundColor: 'darkslategray',
 	        border: '1px solid black',
 	        borderRadius: '2.5em',
-	        width: '480px',
+	        width: '200px',
 	        height: '20em',
 	        padding: '1em 1em 1em 1em' };
 	      var baxRow = { display: 'flex',
