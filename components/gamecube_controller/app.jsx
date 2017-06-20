@@ -1,5 +1,5 @@
 import React from 'react'
-import Gamepad from './components/gamepad.jsx'
+import Gamepad from '../gamepad.jsx'
 
 class App extends React.Component {
   constructor (props) {

@@ -35,13 +35,15 @@ class GameCubeController extends React.Component {
       </div>
       <AnalogStick xAxis={axes[0]} yAxis={axes[1]} />
       <CStick xAxis={axes[5]} yAxis={axes[2]} />
-      <div style={yRow}>
-        <YButton button={buttons[3]} />
-      </div>
-      <div style={baxRow}>
-        <BButton button={buttons[2]} />
-        <AButton button={buttons[1]} />
-        <XButton button={buttons[0]} />
+      <div className="right-face-buttons">
+        <div style={yRow}>
+          <YButton button={buttons[3]} />
+        </div>
+        <div style={baxRow}>
+          <BButton button={buttons[2]} />
+          <AButton button={buttons[1]} />
+          <XButton button={buttons[0]} />
+        </div>
       </div>
     </div>
   }
