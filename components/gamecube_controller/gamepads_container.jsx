@@ -1,7 +1,11 @@
 import React from 'react'
 import Gamepad from '../gamepad.jsx'
+import Route from 'react-router-dom'
 
-class App extends React.Component {
+// added routes, focus on seperating gamepad detection and default screen
+// import DefaultScreen from '../default_screen/DefaultScreen.jsx'
+
+class GamepadsContainer extends React.Component {
   constructor (props) {
     super(props)
     this.state = { controllers: {}, pollId: 0 }
@@ -30,6 +34,7 @@ class App extends React.Component {
       window.addEventListener('webkitgamepadconnected', connectHandler)
       window.addEventListener('webkitgamepaddisconnected', disconnectHandler)
     }
+
     let gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads() : [])
     if (gamepads) {
       pollGamepads()
@@ -79,12 +84,13 @@ class App extends React.Component {
     let _gamePads = Object.keys(this.state.controllers).map((key, idx) => {
       return <Gamepad gamepad={this.state.controllers[key]} key={idx} />
     })
+
     return (
-      <div id="main">
+      <div id="gamepads-container">
         {_gamePads}
       </div>
     )
   }
 }
 
-export default App
+export default GamepadsContainer
