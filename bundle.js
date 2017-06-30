@@ -21526,7 +21526,7 @@
 	
 	var _gamepads_container2 = _interopRequireDefault(_gamepads_container);
 	
-	var _trainer = __webpack_require__(273);
+	var _trainer = __webpack_require__(262);
 	
 	var _trainer2 = _interopRequireDefault(_trainer);
 	
@@ -27975,7 +27975,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _gamepad = __webpack_require__(262);
+	var _gamepad = __webpack_require__(263);
 	
 	var _gamepad2 = _interopRequireDefault(_gamepad);
 	
@@ -28126,7 +28126,158 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _gamecube_controller = __webpack_require__(263);
+	var _gamepad = __webpack_require__(263);
+	
+	var _gamepad2 = _interopRequireDefault(_gamepad);
+	
+	var _reactRouterDom = __webpack_require__(217);
+	
+	var _reactRouterDom2 = _interopRequireDefault(_reactRouterDom);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// added routes, focus on seperating gamepad detection and default screen
+	// import DefaultScreen from '../default_screen/DefaultScreen.jsx'
+	
+	var Trainer = function (_React$Component) {
+	  _inherits(Trainer, _React$Component);
+	
+	  function Trainer(props) {
+	    _classCallCheck(this, Trainer);
+	
+	    var _this = _possibleConstructorReturn(this, (Trainer.__proto__ || Object.getPrototypeOf(Trainer)).call(this, props));
+	
+	    _this.state = { controllers: {}, pollId: 0 };
+	    _this.connectHandler = _this.connectHandler.bind(_this);
+	    _this.disconnectHandler = _this.disconnectHandler.bind(_this);
+	    _this.addGamepad = _this.addGamepad.bind(_this);
+	    _this.pollGamepads = _this.pollGamepads.bind(_this);
+	    _this.initializeSession = _this.initializeSession.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(Trainer, [{
+	    key: 'addGamepad',
+	    value: function addGamepad(gamepad) {
+	      var controllers = this.state.controllers;
+	
+	      controllers[gamepad.index] = gamepad;
+	      this.setState({ controllers: controllers });
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var haveEvents = 'GamepadEvent' in window;
+	      var haveWebkitEvents = 'WebKitGamepadEvent' in window;
+	      var connectHandler = this.connectHandler,
+	          pollGamepads = this.pollGamepads,
+	          disconnectHandler = this.disconnectHandler,
+	          initializeSession = this.initializeSession;
+	
+	      if (haveEvents) {
+	        // wtf, had to reverse these events...
+	        window.addEventListener('gamepadconnected', disconnectHandler);
+	        window.addEventListener('gamepaddisconnected', connectHandler);
+	      } else if (haveWebkitEvents) {
+	        window.addEventListener('webkitgamepadconnected', connectHandler);
+	        window.addEventListener('webkitgamepaddisconnected', disconnectHandler);
+	      }
+	
+	      var gamepads = navigator.getGamepads ? navigator.getGamepads() : navigator.webkitGetGamepads ? navigator.webkitGetGamepads() : [];
+	      if (gamepads) {
+	        pollGamepads();
+	        initializeSession();
+	      }
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearInterval(this.state.pollId);
+	    }
+	  }, {
+	    key: 'initializeSession',
+	    value: function initializeSession() {
+	      // let pollId = setInterval(this.pollGamepads)
+	      var pollId = requestAnimationFrame(this.pollGamepads);
+	      this.setState({ pollId: pollId });
+	    }
+	  }, {
+	    key: 'connectHandler',
+	    value: function connectHandler(e) {
+	      this.addGamepad(e.gamepad);
+	      this.initializeSession();
+	      console.log("polling started in connectHandler");
+	    }
+	  }, {
+	    key: 'disconnectHandler',
+	    value: function disconnectHandler(e) {
+	      console.log('Disconnected');
+	      // clearInterval(this.state.pollId)
+	      window.cancelAnimationFrame(this.state.pollId);
+	    }
+	  }, {
+	    key: 'pollGamepads',
+	    value: function pollGamepads() {
+	      var gamepads = navigator.getGamepads ? navigator.getGamepads() : navigator.webkitGetGamepads ? navigator.webkitGetGamepads() : [];
+	      for (var i = 0; i < gamepads.length; i++) {
+	        if (gamepads[i]) {
+	          if (!(gamepads[i].index in this.state.controllers)) {
+	            this.addGamepad(gamepads[i]);
+	          } else {
+	            var controllers = this.state.controllers;
+	
+	            controllers[gamepads[i].index] = gamepads[i];
+	            this.setState({ controllers: controllers });
+	          }
+	        }
+	      }
+	      requestAnimationFrame(this.pollGamepads);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      var _gamePads = Object.keys(this.state.controllers).map(function (key, idx) {
+	        return _react2.default.createElement(_gamepad2.default, { gamepad: _this2.state.controllers[key], key: idx });
+	      });
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'gamepads-container' },
+	        _gamePads
+	      );
+	    }
+	  }]);
+	
+	  return Trainer;
+	}(_react2.default.Component);
+	
+	exports.default = Trainer;
+
+/***/ },
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _gamecube_controller = __webpack_require__(264);
 	
 	var _gamecube_controller2 = _interopRequireDefault(_gamecube_controller);
 	
@@ -28208,7 +28359,7 @@
 	exports.default = Gamepad;
 
 /***/ },
-/* 263 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28223,39 +28374,39 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _AButton = __webpack_require__(264);
+	var _AButton = __webpack_require__(265);
 	
 	var _AButton2 = _interopRequireDefault(_AButton);
 	
-	var _BButton = __webpack_require__(265);
+	var _BButton = __webpack_require__(266);
 	
 	var _BButton2 = _interopRequireDefault(_BButton);
 	
-	var _RButton = __webpack_require__(266);
+	var _RButton = __webpack_require__(267);
 	
 	var _RButton2 = _interopRequireDefault(_RButton);
 	
-	var _LButton = __webpack_require__(267);
+	var _LButton = __webpack_require__(268);
 	
 	var _LButton2 = _interopRequireDefault(_LButton);
 	
-	var _ZButton = __webpack_require__(268);
+	var _ZButton = __webpack_require__(269);
 	
 	var _ZButton2 = _interopRequireDefault(_ZButton);
 	
-	var _XButton = __webpack_require__(269);
+	var _XButton = __webpack_require__(270);
 	
 	var _XButton2 = _interopRequireDefault(_XButton);
 	
-	var _YButton = __webpack_require__(270);
+	var _YButton = __webpack_require__(271);
 	
 	var _YButton2 = _interopRequireDefault(_YButton);
 	
-	var _AnalogStick = __webpack_require__(271);
+	var _AnalogStick = __webpack_require__(272);
 	
 	var _AnalogStick2 = _interopRequireDefault(_AnalogStick);
 	
-	var _CStick = __webpack_require__(272);
+	var _CStick = __webpack_require__(273);
 	
 	var _CStick2 = _interopRequireDefault(_CStick);
 	
@@ -28336,7 +28487,7 @@
 	exports.default = GameCubeController;
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28405,7 +28556,7 @@
 	exports.default = AButton;
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28476,7 +28627,7 @@
 	exports.default = BButton;
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28544,7 +28695,7 @@
 	exports.default = RButton;
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28612,7 +28763,7 @@
 	exports.default = LButton;
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28678,7 +28829,7 @@
 	exports.default = ZButton;
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28742,7 +28893,7 @@
 	exports.default = XButton;
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28813,7 +28964,7 @@
 	exports.default = YButton;
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28909,7 +29060,7 @@
 	exports.default = AnalogStick;
 
 /***/ },
-/* 272 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29003,55 +29154,6 @@
 	}(_react2.default.Component);
 	
 	exports.default = CStick;
-
-/***/ },
-/* 273 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Trainer = function (_React$Component) {
-	  _inherits(Trainer, _React$Component);
-	
-	  function Trainer() {
-	    _classCallCheck(this, Trainer);
-	
-	    return _possibleConstructorReturn(this, (Trainer.__proto__ || Object.getPrototypeOf(Trainer)).apply(this, arguments));
-	  }
-	
-	  _createClass(Trainer, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'h3',
-	        null,
-	        'Trainer Mode'
-	      );
-	    }
-	  }]);
-	
-	  return Trainer;
-	}(_react2.default.Component);
-	
-	exports.default = Trainer;
 
 /***/ }
 /******/ ]);
