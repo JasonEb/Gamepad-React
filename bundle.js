@@ -28244,14 +28244,19 @@
 	    value: function render() {
 	      var _this2 = this;
 	
-	      var _gamePads = Object.keys(this.state.controllers).map(function (key, idx) {
-	        return _react2.default.createElement(_gamepad2.default, { gamepad: _this2.state.controllers[key], key: idx });
+	      var _sticks = Object.keys(this.state.controllers).map(function (key, idx) {
+	        return _react2.default.createElement('sticks', { gamepad: _this2.state.controllers[key], key: idx });
 	      });
 	
 	      return _react2.default.createElement(
 	        'div',
 	        { id: 'gamepads-container' },
-	        _gamePads
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Trainer'
+	        ),
+	        _sticks
 	      );
 	    }
 	  }]);
