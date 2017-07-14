@@ -82,7 +82,7 @@ class Trainer extends React.Component {
 
   render () {
     let _sticks = Object.keys(this.state.controllers).map((key, idx) => {
-      return <sticks gamepad={this.state.controllers[key]} key={idx} />
+      return <Sticks gamepad={this.state.controllers[key]} key={idx} />
     })
 
     return (

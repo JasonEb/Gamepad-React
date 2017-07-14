@@ -5,6 +5,7 @@ import { HashRouter, Route } from 'react-router-dom'
 // components
 import GamepadsContainer from './gamecube_controller/gamepads_container.jsx'
 import Trainer from './trainer/trainer.jsx'
+import Welcome from './welcome.jsx'
 
 class Root extends React.Component {
   render () {
@@ -13,6 +14,7 @@ class Root extends React.Component {
         <div>
           <Route path="/home" component={GamepadsContainer} />
           <Route path="/trainer" component={Trainer} />
+          <Route path="/welcome" component={Welcome} />
         </div>
       </HashRouter>
     )

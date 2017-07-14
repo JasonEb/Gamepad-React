@@ -21530,6 +21530,10 @@
 	
 	var _trainer2 = _interopRequireDefault(_trainer);
 	
+	var _welcome = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./welcome.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _welcome2 = _interopRequireDefault(_welcome);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21560,7 +21564,8 @@
 	          'div',
 	          null,
 	          _react2.default.createElement(_reactRouterDom.Route, { path: '/home', component: _gamepads_container2.default }),
-	          _react2.default.createElement(_reactRouterDom.Route, { path: '/trainer', component: _trainer2.default })
+	          _react2.default.createElement(_reactRouterDom.Route, { path: '/trainer', component: _trainer2.default }),
+	          _react2.default.createElement(_reactRouterDom.Route, { path: '/welcome', component: _welcome2.default })
 	        )
 	      );
 	    }
@@ -28245,7 +28250,7 @@
 	      var _this2 = this;
 	
 	      var _sticks = Object.keys(this.state.controllers).map(function (key, idx) {
-	        return _react2.default.createElement('sticks', { gamepad: _this2.state.controllers[key], key: idx });
+	        return _react2.default.createElement(Sticks, { gamepad: _this2.state.controllers[key], key: idx });
 	      });
 	
 	      return _react2.default.createElement(
