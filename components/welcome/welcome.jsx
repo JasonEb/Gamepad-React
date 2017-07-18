@@ -1,14 +1,13 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 class WelcomeContainer extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     return (
       <div>
-        Welcome Page
+        <h1>Shield Drop Trainer</h1>
+        <p>Welcome to Scrugg's Shield drop.</p>
+        <Link to="/about">About</Link>
       </div>
     )
   }

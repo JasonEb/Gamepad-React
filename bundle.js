@@ -29181,6 +29181,8 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRouterDom = __webpack_require__(217);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29192,10 +29194,10 @@
 	var WelcomeContainer = function (_React$Component) {
 	  _inherits(WelcomeContainer, _React$Component);
 	
-	  function WelcomeContainer(props) {
+	  function WelcomeContainer() {
 	    _classCallCheck(this, WelcomeContainer);
 	
-	    return _possibleConstructorReturn(this, (WelcomeContainer.__proto__ || Object.getPrototypeOf(WelcomeContainer)).call(this, props));
+	    return _possibleConstructorReturn(this, (WelcomeContainer.__proto__ || Object.getPrototypeOf(WelcomeContainer)).apply(this, arguments));
 	  }
 	
 	  _createClass(WelcomeContainer, [{
@@ -29204,7 +29206,21 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        'Welcome Page'
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Shield Drop Trainer'
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Welcome to Scrugg\'s Shield drop.'
+	        ),
+	        _react2.default.createElement(
+	          _reactRouterDom.Link,
+	          { to: '/about' },
+	          'About'
+	        )
 	      );
 	    }
 	  }]);
