@@ -21563,9 +21563,9 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
+	          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _welcome2.default }),
 	          _react2.default.createElement(_reactRouterDom.Route, { path: '/home', component: _gamepads_container2.default }),
-	          _react2.default.createElement(_reactRouterDom.Route, { path: '/trainer', component: _trainer2.default }),
-	          _react2.default.createElement(_reactRouterDom.Route, { path: '/welcome', component: _welcome2.default })
+	          _react2.default.createElement(_reactRouterDom.Route, { path: '/trainer', component: _trainer2.default })
 	        )
 	      );
 	    }

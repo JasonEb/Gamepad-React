@@ -12,9 +12,9 @@ class Root extends React.Component {
     return (
       <HashRouter>
         <div>
+          <Route exact path="/" component={Welcome} />
           <Route path="/home" component={GamepadsContainer} />
           <Route path="/trainer" component={Trainer} />
-          <Route path="/welcome" component={Welcome} />
         </div>
       </HashRouter>
     )
