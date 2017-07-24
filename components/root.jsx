@@ -13,7 +13,7 @@ class Root extends React.Component {
       <HashRouter>
         <div>
           <Route exact path="/" component={Welcome} />
-          <Route path="/home" component={GamepadsContainer} />
+          <Route path="/debug" component={GamepadsContainer} />
           <Route path="/trainer" component={Trainer} />
         </div>
       </HashRouter>

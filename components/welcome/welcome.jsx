@@ -7,7 +7,8 @@ class WelcomeContainer extends React.Component {
       <div>
         <h1>Shield Drop Trainer</h1>
         <p>Welcome to Scrugg's Shield drop.</p>
-        <Link to="/about">About</Link>
+        <Link to="/Debug">Debug</Link>
+        <Link to="/trainer">Trainer</Link>
       </div>
     )
   }
