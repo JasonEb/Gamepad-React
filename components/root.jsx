@@ -6,12 +6,14 @@ import { HashRouter, Route } from 'react-router-dom'
 import GamepadsContainer from './gamecube_controller/gamepads_container.jsx'
 import Trainer from './trainer/trainer.jsx'
 import Welcome from './welcome/welcome.jsx'
+import NavBar from './navbar/navbar.jsx'
 
 class Root extends React.Component {
   render () {
     return (
       <HashRouter>
         <div>
+          <NavBar />
           <Route exact path="/" component={Welcome} />
           <Route path="/debug" component={GamepadsContainer} />
           <Route path="/trainer" component={Trainer} />

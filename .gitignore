@@ -6,7 +6,8 @@
 ### Custom ###
 *.db
 *.sqlite
-
+.bundle.js
+.bundle.js.map
 
 ### OSX ###
 
