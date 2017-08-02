@@ -23,6 +23,7 @@ class GamepadsContainer extends React.Component {
   }
 
   componentDidMount () {
+    // pass these down as props
     const haveEvents = 'GamepadEvent' in window
     const haveWebkitEvents = 'WebKitGamepadEvent' in window
     const { connectHandler, pollGamepads, disconnectHandler, initializeSession } = this

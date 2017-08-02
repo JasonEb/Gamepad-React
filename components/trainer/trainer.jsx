@@ -1,9 +1,6 @@
 import React from 'react'
-import Gamepad from '../gamepad.jsx'
+import ShieldDropPad from './shield_drop_pad.jsx'
 import Route from 'react-router-dom'
-
-// added routes, focus on seperating gamepad detection and default screen
-// import DefaultScreen from '../default_screen/DefaultScreen.jsx'
 
 class Trainer extends React.Component {
   constructor (props) {
@@ -81,14 +78,14 @@ class Trainer extends React.Component {
   }
 
   render () {
-    let _sticks = Object.keys(this.state.controllers).map((key, idx) => {
-      return <Sticks gamepad={this.state.controllers[key]} key={idx} />
+    let _shieldDropPad = Object.keys(this.state.controllers).map((key, idx) => {
+      return <ShieldDropPad gamepad={this.state.controllers[key]} key={idx} />
     })
 
     return (
       <div id="gamepads-container">
         <h3>Trainer</h3>
-        {_sticks}
+        {_shieldDropPad}
       </div>
     )
   }
