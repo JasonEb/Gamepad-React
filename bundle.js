@@ -21530,11 +21530,11 @@
 	
 	var _trainer2 = _interopRequireDefault(_trainer);
 	
-	var _welcome = __webpack_require__(274);
+	var _welcome = __webpack_require__(277);
 	
 	var _welcome2 = _interopRequireDefault(_welcome);
 	
-	var _navbar = __webpack_require__(275);
+	var _navbar = __webpack_require__(278);
 	
 	var _navbar2 = _interopRequireDefault(_navbar);
 	
@@ -29031,7 +29031,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _shield_drop_pad = __webpack_require__(276);
+	var _shield_drop_pad = __webpack_require__(274);
 	
 	var _shield_drop_pad2 = _interopRequireDefault(_shield_drop_pad);
 	
@@ -29184,6 +29184,241 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _shield_drop_controller = __webpack_require__(275);
+	
+	var _shield_drop_controller2 = _interopRequireDefault(_shield_drop_controller);
+	
+	var _shield_drop_meter = __webpack_require__(276);
+	
+	var _shield_drop_meter2 = _interopRequireDefault(_shield_drop_meter);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ShieldDropPad = function (_React$Component) {
+	  _inherits(ShieldDropPad, _React$Component);
+	
+	  function ShieldDropPad() {
+	    _classCallCheck(this, ShieldDropPad);
+	
+	    return _possibleConstructorReturn(this, (ShieldDropPad.__proto__ || Object.getPrototypeOf(ShieldDropPad)).apply(this, arguments));
+	  }
+	
+	  _createClass(ShieldDropPad, [{
+	    key: 'render',
+	    value: function render() {
+	      var gamepad = this.props.gamepad;
+	      var buttons = gamepad.buttons,
+	          axes = gamepad.axes;
+	
+	      var _buttons = buttons.map(function (button, idx) {
+	        return _react2.default.createElement(
+	          'div',
+	          { key: idx },
+	          'Button ',
+	          idx,
+	          ': ',
+	          button.pressed ? 'pressed' : 'unpressed'
+	        );
+	      });
+	
+	      var _axes = axes.map(function (axe, idx) {
+	        return _react2.default.createElement(
+	          'div',
+	          { key: idx },
+	          _react2.default.createElement(
+	            'pre',
+	            null,
+	            'Axe ',
+	            idx,
+	            ' : ',
+	            axe.toPrecision(2)
+	          ),
+	          _react2.default.createElement('progress', { style: progressStyle, max: 2, value: axe + 1 })
+	        );
+	      });
+	
+	      var axesStyle = { display: 'flex', justifyContent: 'space-around', flexDirection: 'column' };
+	      var progressStyle = { alignSelf: 'flex-end' };
+	      var buttonsStyle = { display: 'flex', justifyContent: 'space-around', flexDirection: 'column' };
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'gamepad' },
+	        _react2.default.createElement(_shield_drop_controller2.default, { gamepad: gamepad }),
+	        _react2.default.createElement(
+	          'div',
+	          { style: axesStyle },
+	          'Down Meter',
+	          _react2.default.createElement(_shield_drop_meter2.default, { axes: axes })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return ShieldDropPad;
+	}(_react2.default.Component);
+	
+	exports.default = ShieldDropPad;
+
+/***/ },
+/* 275 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _AnalogStick = __webpack_require__(271);
+	
+	var _AnalogStick2 = _interopRequireDefault(_AnalogStick);
+	
+	var _CStick = __webpack_require__(272);
+	
+	var _CStick2 = _interopRequireDefault(_CStick);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ShieldDropController = function (_React$Component) {
+	  _inherits(ShieldDropController, _React$Component);
+	
+	  function ShieldDropController() {
+	    _classCallCheck(this, ShieldDropController);
+	
+	    return _possibleConstructorReturn(this, (ShieldDropController.__proto__ || Object.getPrototypeOf(ShieldDropController)).apply(this, arguments));
+	  }
+	
+	  _createClass(ShieldDropController, [{
+	    key: 'render',
+	    value: function render() {
+	      var padStyle = { backgroundColor: 'darkslategray',
+	        border: '1px solid black',
+	        borderRadius: '2.5em',
+	        width: '200px',
+	        height: '20em',
+	        padding: '1em 1em 1em 1em' };
+	      var baxRow = { display: 'flex',
+	        width: '200px',
+	        justifyContent: 'center' };
+	      var yRow = { display: 'flex',
+	        width: '200px',
+	        justifyContent: 'center' };
+	      var shoulderRow = { display: 'flex',
+	        width: '200px',
+	        justifyContent: 'space-around' };
+	      var _props$gamepad = this.props.gamepad,
+	          buttons = _props$gamepad.buttons,
+	          axes = _props$gamepad.axes;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { style: padStyle },
+	        _react2.default.createElement(_AnalogStick2.default, { xAxis: axes[0], yAxis: axes[1] }),
+	        _react2.default.createElement(_CStick2.default, { xAxis: axes[5], yAxis: axes[2] })
+	      );
+	    }
+	  }]);
+	
+	  return ShieldDropController;
+	}(_react2.default.Component);
+	
+	exports.default = ShieldDropController;
+
+/***/ },
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ShieldDropMeter = function (_React$Component) {
+	  _inherits(ShieldDropMeter, _React$Component);
+	
+	  function ShieldDropMeter() {
+	    _classCallCheck(this, ShieldDropMeter);
+	
+	    return _possibleConstructorReturn(this, (ShieldDropMeter.__proto__ || Object.getPrototypeOf(ShieldDropMeter)).apply(this, arguments));
+	  }
+	
+	  _createClass(ShieldDropMeter, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          'Analog Stick Down: ',
+	          this.props.axes[1].toPrecision(3)
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          'C-Stick Down: ',
+	          this.props.axes[2].toPrecision(3)
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return ShieldDropMeter;
+	}(_react2.default.Component);
+	
+	exports.default = ShieldDropMeter;
+
+/***/ },
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
 	var _reactRouterDom = __webpack_require__(217);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -29229,7 +29464,7 @@
 	exports.default = WelcomeContainer;
 
 /***/ },
-/* 275 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29308,175 +29543,6 @@
 	}(_react2.default.Component);
 	
 	exports.default = NavBar;
-
-/***/ },
-/* 276 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _shield_drop_controller = __webpack_require__(277);
-	
-	var _shield_drop_controller2 = _interopRequireDefault(_shield_drop_controller);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ShieldDropPad = function (_React$Component) {
-	  _inherits(ShieldDropPad, _React$Component);
-	
-	  function ShieldDropPad() {
-	    _classCallCheck(this, ShieldDropPad);
-	
-	    return _possibleConstructorReturn(this, (ShieldDropPad.__proto__ || Object.getPrototypeOf(ShieldDropPad)).apply(this, arguments));
-	  }
-	
-	  _createClass(ShieldDropPad, [{
-	    key: 'render',
-	    value: function render() {
-	      var gamepad = this.props.gamepad;
-	      var buttons = gamepad.buttons,
-	          axes = gamepad.axes;
-	
-	      var _buttons = buttons.map(function (button, idx) {
-	        return _react2.default.createElement(
-	          'div',
-	          { key: idx },
-	          'Button ',
-	          idx,
-	          ': ',
-	          button.pressed ? 'pressed' : 'unpressed'
-	        );
-	      });
-	      var _axes = axes.map(function (axe, idx) {
-	        return _react2.default.createElement(
-	          'div',
-	          { key: idx },
-	          _react2.default.createElement(
-	            'pre',
-	            null,
-	            'Axe ',
-	            idx,
-	            ' : ',
-	            axe.toPrecision(2)
-	          ),
-	          _react2.default.createElement('progress', { style: progressStyle, max: 2, value: axe + 1 })
-	        );
-	      });
-	      var axesStyle = { display: 'flex', justifyContent: 'space-around', flexDirection: 'column' };
-	      var progressStyle = { alignSelf: 'flex-end' };
-	      var buttonsStyle = { display: 'flex', justifyContent: 'space-around', flexDirection: 'column' };
-	
-	      return _react2.default.createElement(
-	        'div',
-	        { id: 'gamepad' },
-	        _react2.default.createElement(_shield_drop_controller2.default, { gamepad: gamepad }),
-	        _react2.default.createElement(
-	          'div',
-	          { style: axesStyle },
-	          'Axes',
-	          _axes
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return ShieldDropPad;
-	}(_react2.default.Component);
-	
-	exports.default = ShieldDropPad;
-
-/***/ },
-/* 277 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _AnalogStick = __webpack_require__(271);
-	
-	var _AnalogStick2 = _interopRequireDefault(_AnalogStick);
-	
-	var _CStick = __webpack_require__(272);
-	
-	var _CStick2 = _interopRequireDefault(_CStick);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ShieldDropController = function (_React$Component) {
-	  _inherits(ShieldDropController, _React$Component);
-	
-	  function ShieldDropController() {
-	    _classCallCheck(this, ShieldDropController);
-	
-	    return _possibleConstructorReturn(this, (ShieldDropController.__proto__ || Object.getPrototypeOf(ShieldDropController)).apply(this, arguments));
-	  }
-	
-	  _createClass(ShieldDropController, [{
-	    key: 'render',
-	    value: function render() {
-	      var padStyle = { backgroundColor: 'darkslategray',
-	        border: '1px solid black',
-	        borderRadius: '2.5em',
-	        width: '200px',
-	        height: '20em',
-	        padding: '1em 1em 1em 1em' };
-	      var baxRow = { display: 'flex',
-	        width: '200px',
-	        justifyContent: 'center' };
-	      var yRow = { display: 'flex',
-	        width: '200px',
-	        justifyContent: 'center' };
-	      var shoulderRow = { display: 'flex',
-	        width: '200px',
-	        justifyContent: 'space-around' };
-	      var _props$gamepad = this.props.gamepad,
-	          buttons = _props$gamepad.buttons,
-	          axes = _props$gamepad.axes;
-	
-	      return _react2.default.createElement(
-	        'div',
-	        { style: padStyle },
-	        _react2.default.createElement(_AnalogStick2.default, { xAxis: axes[0], yAxis: axes[1] }),
-	        _react2.default.createElement(_CStick2.default, { xAxis: axes[5], yAxis: axes[2] })
-	      );
-	    }
-	  }]);
-	
-	  return ShieldDropController;
-	}(_react2.default.Component);
-	
-	exports.default = ShieldDropController;
 
 /***/ }
 /******/ ]);
