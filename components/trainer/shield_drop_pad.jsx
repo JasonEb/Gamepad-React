@@ -20,7 +20,6 @@ class ShieldDropPad extends React.Component {
 
     let axesStyle = {display: 'flex', justifyContent: 'space-around', flexDirection: 'column'}
     let progressStyle={alignSelf: 'flex-end'}
-    let buttonsStyle={display: 'flex', justifyContent: 'space-around', flexDirection: 'column'}
 
     return (
       <div id="gamepad">
