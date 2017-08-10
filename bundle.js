@@ -29310,24 +29310,14 @@
 	  _createClass(ShieldDropController, [{
 	    key: 'render',
 	    value: function render() {
-	      var padStyle = { backgroundColor: 'darkslategray',
+	      var padStyle = { backgroundColor: 'dimgray',
 	        border: '1px solid black',
 	        borderRadius: '2.5em',
 	        width: '200px',
-	        height: '20em',
 	        padding: '1em 1em 1em 1em' };
-	      var baxRow = { display: 'flex',
-	        width: '200px',
-	        justifyContent: 'center' };
-	      var yRow = { display: 'flex',
-	        width: '200px',
-	        justifyContent: 'center' };
-	      var shoulderRow = { display: 'flex',
-	        width: '200px',
-	        justifyContent: 'space-around' };
-	      var _props$gamepad = this.props.gamepad,
-	          buttons = _props$gamepad.buttons,
-	          axes = _props$gamepad.axes;
+	
+	      var axes = this.props.gamepad.axes;
+	
 	
 	      return _react2.default.createElement(
 	        'div',
