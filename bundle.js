@@ -29437,11 +29437,16 @@
 	    value: function render() {
 	      var percentage = this.props.percentage;
 	
+	      var colorNumber = parseInt(percentage * 255);
+	      var color = 'rgb(' + colorNumber + ', 255, 0)';
+	
 	      var squareStyle = {
 	        width: '5em',
 	        height: '5em',
-	        border: '1px solid rgb(0,0,0)'
+	        border: '1px solid ' + color,
+	        backgroundColor: color
 	      };
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'color-meter' },
