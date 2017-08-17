@@ -8,7 +8,7 @@ class ShieldDropMeter extends React.Component {
     return (
       <div>
         <pre>Analog Stick Down: {axes[1].toPrecision(3)}</pre>
-        <ColorMeter percentage={axes[1]} />
+        <ColorMeter className="analog-stick-meter" percentage={axes[1]} />
         <pre>C-Stick Down: {this.props.axes[2].toPrecision(3)}</pre>
       </div>
   ) }

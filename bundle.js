@@ -21530,11 +21530,11 @@
 	
 	var _trainer2 = _interopRequireDefault(_trainer);
 	
-	var _welcome = __webpack_require__(277);
+	var _welcome = __webpack_require__(278);
 	
 	var _welcome2 = _interopRequireDefault(_welcome);
 	
-	var _navbar = __webpack_require__(278);
+	var _navbar = __webpack_require__(279);
 	
 	var _navbar2 = _interopRequireDefault(_navbar);
 	
@@ -29348,7 +29348,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _color_meter = __webpack_require__(279);
+	var _color_meter = __webpack_require__(277);
 	
 	var _color_meter2 = _interopRequireDefault(_color_meter);
 	
@@ -29383,7 +29383,7 @@
 	          'Analog Stick Down: ',
 	          axes[1].toPrecision(3)
 	        ),
-	        _react2.default.createElement(_color_meter2.default, { percentage: axes[1] }),
+	        _react2.default.createElement(_color_meter2.default, { className: 'analog-stick-meter', percentage: axes[1] }),
 	        _react2.default.createElement(
 	          'pre',
 	          null,
@@ -29401,6 +29401,64 @@
 
 /***/ },
 /* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ColorMeter = function (_React$Component) {
+	  _inherits(ColorMeter, _React$Component);
+	
+	  function ColorMeter() {
+	    _classCallCheck(this, ColorMeter);
+	
+	    return _possibleConstructorReturn(this, (ColorMeter.__proto__ || Object.getPrototypeOf(ColorMeter)).apply(this, arguments));
+	  }
+	
+	  _createClass(ColorMeter, [{
+	    key: 'render',
+	    value: function render() {
+	      var percentage = this.props.percentage;
+	
+	      var squareStyle = {
+	        width: '5em',
+	        height: '5em',
+	        border: '1px solid rgb(0,0,0)'
+	      };
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'color-meter' },
+	        'Color Meter: ',
+	        percentage,
+	        _react2.default.createElement('div', { className: 'color-square', style: squareStyle })
+	      );
+	    }
+	  }]);
+	
+	  return ColorMeter;
+	}(_react2.default.Component);
+	
+	exports.default = ColorMeter;
+
+/***/ },
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29460,7 +29518,7 @@
 	exports.default = WelcomeContainer;
 
 /***/ },
-/* 278 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29539,58 +29597,6 @@
 	}(_react2.default.Component);
 	
 	exports.default = NavBar;
-
-/***/ },
-/* 279 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ColorMeter = function (_React$Component) {
-	  _inherits(ColorMeter, _React$Component);
-	
-	  function ColorMeter() {
-	    _classCallCheck(this, ColorMeter);
-	
-	    return _possibleConstructorReturn(this, (ColorMeter.__proto__ || Object.getPrototypeOf(ColorMeter)).apply(this, arguments));
-	  }
-	
-	  _createClass(ColorMeter, [{
-	    key: 'render',
-	    value: function render() {
-	      var percentage = this.props.percentage;
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        'Color Meter: ',
-	        percentage
-	      );
-	    }
-	  }]);
-	
-	  return ColorMeter;
-	}(_react2.default.Component);
-	
-	exports.default = ColorMeter;
 
 /***/ }
 /******/ ]);
