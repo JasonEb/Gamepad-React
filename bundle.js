@@ -29437,8 +29437,21 @@
 	    value: function render() {
 	      var percentage = this.props.percentage;
 	
-	      var colorNumber = parseInt(percentage * 255);
-	      var color = 'rgb(' + colorNumber + ', 255, 0)';
+	      var colorNumber = parseInt((percentage + 0.30) * 255);
+	      var color = void 0;
+	
+	      // logic
+	      // percentages turns green as it approaches 0.70
+	      // turns red if over 0.70
+	      if (percentage >= 0.70) {
+	        color = 'rgb(255, 0, 0)';
+	      } else if (percentage >= 0.66 && percentage < 0.70) {
+	        color = 'rgb(0, 255 , 0)';
+	      } else {
+	        color = 'rgb(255, 255, 0)';
+	      }
+	
+	      console.log(color);
 	
 	      var squareStyle = {
 	        width: '5em',
