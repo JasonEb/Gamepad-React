@@ -14,9 +14,10 @@ class Root extends React.Component {
       <HashRouter>
         <div>
           <NavBar />
-          <Route exact path="/" component={Welcome} />
+          <Route exact path="/" component={Trainer} />
           <Route path="/debug" component={GamepadsContainer} />
           <Route path="/trainer" component={Trainer} />
+          <Route path="/welcome" component={Welcome} />
         </div>
       </HashRouter>
     )

@@ -22258,9 +22258,10 @@
 	          'div',
 	          null,
 	          _react2.default.createElement(_navbar2.default, null),
-	          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _welcome2.default }),
+	          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _trainer2.default }),
 	          _react2.default.createElement(_reactRouterDom.Route, { path: '/debug', component: _gamepads_container2.default }),
-	          _react2.default.createElement(_reactRouterDom.Route, { path: '/trainer', component: _trainer2.default })
+	          _react2.default.createElement(_reactRouterDom.Route, { path: '/trainer', component: _trainer2.default }),
+	          _react2.default.createElement(_reactRouterDom.Route, { path: '/welcome', component: _welcome2.default })
 	        )
 	      );
 	    }
@@ -29281,7 +29282,11 @@
 	        );
 	      });
 	
-	      var axesStyle = { display: 'flex', justifyContent: 'space-around', flexDirection: 'column' };
+	      var axesStyle = {
+	        display: 'flex',
+	        justifyContent: 'space-around',
+	        flexDirection: 'column'
+	      };
 	      var progressStyle = { alignSelf: 'flex-end' };
 	      var shieldDropPadStyle = { border: '1px solid red' };
 	
@@ -29292,7 +29297,6 @@
 	        _react2.default.createElement(
 	          'div',
 	          { style: axesStyle },
-	          'Down Meter',
 	          _react2.default.createElement(_shield_drop_meter2.default, { axes: axes })
 	        )
 	      );
@@ -29428,7 +29432,8 @@
 	          null,
 	          'C-Stick Down: ',
 	          this.props.axes[2].toPrecision(3)
-	        )
+	        ),
+	        _react2.default.createElement(_color_meter2.default, { className: 'c-stick-meter', percentage: axes[2] })
 	      );
 	    }
 	  }]);
@@ -29484,13 +29489,11 @@
 	      // turns red if over 0.70
 	      if (percentage >= 0.70) {
 	        color = 'rgb(255, 0, 0)';
-	      } else if (percentage >= 0.66 && percentage < 0.70) {
+	      } else if (percentage >= 0.63 && percentage < 0.70) {
 	        color = 'rgb(0, 255 , 0)';
 	      } else {
 	        color = 'rgb(255, 255, 0)';
 	      }
-	
-	      // console.log(color)
 	
 	      var squareStyle = {
 	        width: '5em',
@@ -29502,8 +29505,6 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'color-meter' },
-	        'Color Meter: ',
-	        percentage,
 	        _react2.default.createElement('div', { className: 'color-square', style: squareStyle })
 	      );
 	    }
