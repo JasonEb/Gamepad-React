@@ -9,7 +9,9 @@ class ShieldDropController extends React.Component {
                       border: '1px solid black',
                       borderRadius: '2.5em',
                       width: '200px',
-                      padding: '1em 1em 1em 1em'}
+                      padding: '1em 1em 1em 1em',
+                      margin: 'auto'
+                    }
 
     let { axes } = this.props.gamepad
 
