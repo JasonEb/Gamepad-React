@@ -17,7 +17,7 @@ class ColorMeter extends React.Component {
       color = `rgb(255, 255, 0)`
     }
 
-    console.log(color)
+    // console.log(color)
 
     let squareStyle = {
       width: '5em',

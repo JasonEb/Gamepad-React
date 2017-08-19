@@ -22,7 +22,7 @@ class ShieldDropPad extends React.Component {
     let progressStyle={alignSelf: 'flex-end'}
 
     return (
-      <div id="gamepad">
+      <div className="shield-drop-pad">
         <ShieldDropController gamepad={gamepad} />
         <div style={axesStyle}>Down Meter
         <ShieldDropMeter axes={axes} />
