@@ -83,7 +83,7 @@ class Trainer extends React.Component {
     })
 
     return (
-      <div id="gamepads-container">
+      <div id="shield-drop-pads-container">
         <h3>Trainer</h3>
         {_shieldDropPads}
       </div>

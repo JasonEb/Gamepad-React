@@ -29190,7 +29190,7 @@
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { id: 'gamepads-container' },
+	        { id: 'shield-drop-pads-container' },
 	        _react2.default.createElement(
 	          'h3',
 	          null,
@@ -29283,10 +29283,11 @@
 	
 	      var axesStyle = { display: 'flex', justifyContent: 'space-around', flexDirection: 'column' };
 	      var progressStyle = { alignSelf: 'flex-end' };
+	      var shieldDropPadStyle = { border: '1px solid red' };
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'shield-drop-pad' },
+	        { className: 'shield-drop-pad', style: shieldDropPadStyle },
 	        _react2.default.createElement(_shield_drop_controller2.default, { gamepad: gamepad }),
 	        _react2.default.createElement(
 	          'div',

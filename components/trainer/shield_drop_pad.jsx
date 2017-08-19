@@ -20,9 +20,10 @@ class ShieldDropPad extends React.Component {
 
     let axesStyle = {display: 'flex', justifyContent: 'space-around', flexDirection: 'column'}
     let progressStyle={alignSelf: 'flex-end'}
+    let shieldDropPadStyle={ border: '1px solid red' } 
 
     return (
-      <div className="shield-drop-pad">
+      <div className="shield-drop-pad" style={shieldDropPadStyle} >
         <ShieldDropController gamepad={gamepad} />
         <div style={axesStyle}>Down Meter
         <ShieldDropMeter axes={axes} />
