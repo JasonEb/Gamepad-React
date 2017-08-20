@@ -8,7 +8,9 @@ class ShieldDropMeter extends React.Component {
     let { axes } = this.props
 
     let style = {
-      border: '1px solid blue'
+      border: '1px solid blue',
+      display: 'flex',
+      justifyContent: 'center'
     }
 
     return (

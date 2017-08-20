@@ -24,8 +24,13 @@ class ColorMeter extends React.Component {
       backgroundColor: color
     }
 
+    let meterStyle = {
+      display: 'flex',
+      justifyContent: 'center'
+    }
+
     return (
-      <div className='color-meter' >
+      <div className='color-meter' style={meterStyle}>
         <div className="color-square" style={squareStyle} />
       </div>
   ) }

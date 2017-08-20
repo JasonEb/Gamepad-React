@@ -29247,7 +29247,7 @@
 	        { className: 'shield-drop-pad', style: shieldDropPadStyle },
 	        _react2.default.createElement(
 	          'div',
-	          { style: axesStyle },
+	          { className: 'stick-report', style: axesStyle },
 	          _react2.default.createElement(_shield_drop_meter2.default, { axes: axes })
 	        ),
 	        _react2.default.createElement(_shield_drop_controller2.default, { gamepad: gamepad })
@@ -29377,7 +29377,9 @@
 	
 	
 	      var style = {
-	        border: '1px solid blue'
+	        border: '1px solid blue',
+	        display: 'flex',
+	        justifyContent: 'center'
 	      };
 	
 	      return _react2.default.createElement(
@@ -29439,13 +29441,14 @@
 	          name = _props.name;
 	
 	      var className = name + '-stick-meter';
-	      var style = {
-	        border: '1px solid blue'
+	      var stickStyle = {
+	        border: '1px solid green',
+	        width: '45%'
 	      };
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'stick-meter', style: style },
+	        { className: 'stick-meter', style: stickStyle },
 	        _react2.default.createElement(
 	          'pre',
 	          null,
@@ -29522,9 +29525,14 @@
 	        backgroundColor: color
 	      };
 	
+	      var meterStyle = {
+	        display: 'flex',
+	        justifyContent: 'center'
+	      };
+	
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'color-meter' },
+	        { className: 'color-meter', style: meterStyle },
 	        _react2.default.createElement('div', { className: 'color-square', style: squareStyle })
 	      );
 	    }

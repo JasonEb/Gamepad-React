@@ -26,7 +26,7 @@ class ShieldDropPad extends React.Component {
     }
 
     let progressStyle = { alignSelf: 'flex-end' }
-    
+
     let shieldDropPadStyle = {
       border: '1px solid red',
       width: '75%',
@@ -35,7 +35,7 @@ class ShieldDropPad extends React.Component {
 
     return (
       <div className="shield-drop-pad" style={shieldDropPadStyle}>
-        <div style={axesStyle}>
+        <div className="stick-report" style={axesStyle}>
           <ShieldDropMeter axes={axes} />
         </div>
         <ShieldDropController gamepad={gamepad} />
