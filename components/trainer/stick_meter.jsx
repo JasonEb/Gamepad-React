@@ -9,12 +9,16 @@ class StickMeter extends React.Component {
     let className = `${name}-stick-meter`
     let stickStyle = {
       border: '1px solid green',
-      width: '45%'
+      width: '33%',
+      display: 'flex',
+      flexDirection: 'column',
+      textAlign: 'center'
     }
 
     return (
       <div className="stick-meter" style={stickStyle}>
-        <pre>{name} Stick Down: {axis.toPrecision(3)}</pre>
+        <h5>{name} Stick Down</h5>
+        <pre>{axis.toPrecision(3)}</pre>
         <ColorMeter className={className} percentage={axis} />
       </div>
   ) }

@@ -84,7 +84,7 @@ class Trainer extends React.Component {
 
     return (
       <div id="shield-drop-pads-container">
-        <h3>Trainer</h3>
+        <h3>Shield Drop Trainer</h3>
         {_shieldDropPads}
       </div>
     )

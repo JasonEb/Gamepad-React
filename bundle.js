@@ -29157,7 +29157,7 @@
 	        _react2.default.createElement(
 	          'h3',
 	          null,
-	          'Trainer'
+	          'Shield Drop Trainer'
 	        ),
 	        _shieldDropPads
 	      );
@@ -29443,17 +29443,24 @@
 	      var className = name + '-stick-meter';
 	      var stickStyle = {
 	        border: '1px solid green',
-	        width: '45%'
+	        width: '33%',
+	        display: 'flex',
+	        flexDirection: 'column',
+	        textAlign: 'center'
 	      };
 	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'stick-meter', style: stickStyle },
 	        _react2.default.createElement(
-	          'pre',
+	          'h5',
 	          null,
 	          name,
-	          ' Stick Down: ',
+	          ' Stick Down'
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
 	          axis.toPrecision(3)
 	        ),
 	        _react2.default.createElement(_color_meter2.default, { className: className, percentage: axis })
