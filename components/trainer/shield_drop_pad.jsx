@@ -28,7 +28,6 @@ class ShieldDropPad extends React.Component {
     let progressStyle = { alignSelf: 'flex-end' }
 
     let shieldDropPadStyle = {
-      border: '1px solid red',
       width: '75%',
       margin: 'auto'
     }

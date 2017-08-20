@@ -29237,7 +29237,6 @@
 	      var progressStyle = { alignSelf: 'flex-end' };
 	
 	      var shieldDropPadStyle = {
-	        border: '1px solid red',
 	        width: '75%',
 	        margin: 'auto'
 	      };
@@ -29304,8 +29303,8 @@
 	  _createClass(ShieldDropController, [{
 	    key: 'render',
 	    value: function render() {
-	      var padStyle = { backgroundColor: 'dimgray',
-	        border: '1px solid black',
+	      var padStyle = {
+	        backgroundColor: 'dimgray',
 	        borderRadius: '2.5em',
 	        width: '200px',
 	        padding: '1em 1em 1em 1em',
@@ -29377,7 +29376,6 @@
 	
 	
 	      var style = {
-	        border: '1px solid blue',
 	        display: 'flex',
 	        justifyContent: 'center'
 	      };
@@ -29427,10 +29425,13 @@
 	var StickMeter = function (_React$Component) {
 	  _inherits(StickMeter, _React$Component);
 	
-	  function StickMeter() {
+	  function StickMeter(props) {
 	    _classCallCheck(this, StickMeter);
 	
-	    return _possibleConstructorReturn(this, (StickMeter.__proto__ || Object.getPrototypeOf(StickMeter)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (StickMeter.__proto__ || Object.getPrototypeOf(StickMeter)).call(this, props));
+	
+	    _this.state = { count: 0 };
+	    return _this;
 	  }
 	
 	  _createClass(StickMeter, [{
@@ -29439,10 +29440,11 @@
 	      var _props = this.props,
 	          axis = _props.axis,
 	          name = _props.name;
+	      var count = this.state.count;
 	
 	      var className = name + '-stick-meter';
+	
 	      var stickStyle = {
-	        border: '1px solid green',
 	        width: '33%',
 	        display: 'flex',
 	        flexDirection: 'column',
@@ -29462,6 +29464,12 @@
 	          'pre',
 	          null,
 	          axis.toPrecision(3)
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          'Count: ',
+	          count
 	        ),
 	        _react2.default.createElement(_color_meter2.default, { className: className, percentage: axis })
 	      );
@@ -29679,6 +29687,15 @@
 	              _reactRouterDom.Link,
 	              { to: '/trainer' },
 	              'Trainer'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              _reactRouterDom.Link,
+	              { to: '/welcome' },
+	              'Welcome'
 	            )
 	          )
 	        )
