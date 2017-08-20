@@ -29458,7 +29458,13 @@
 	      this.pressed = axis > 0.10;
 	      // check if pressed
 	      if (pressed) {
-	        prevPercents.push(axis.toPrecision(3));
+	        if (prevPercents.length <= 6) {
+	          prevPercents.push(axis.toPrecision(3));
+	        } else {
+	          prevPercents.shift();
+	          prevPercents.push(axis);
+	          console.log(prevPercents);
+	        }
 	      }
 	
 	      return _react2.default.createElement(
@@ -29479,7 +29485,7 @@
 	          'pre',
 	          null,
 	          'PrevPercent: ',
-	          prevPercents
+	          prevPercents[5]
 	        ),
 	        _react2.default.createElement(
 	          'pre',

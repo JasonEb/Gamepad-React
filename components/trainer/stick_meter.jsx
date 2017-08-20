@@ -25,14 +25,20 @@ class StickMeter extends React.Component {
     this.pressed = (axis > 0.10)
     // check if pressed
     if (pressed) {
-      prevPercents.push(axis.toPrecision(3))
+      if (prevPercents.length <= 6) {
+        prevPercents.push(axis.toPrecision(3))
+      } else {
+        prevPercents.shift()
+        prevPercents.push(axis)
+        console.log(prevPercents)
+      }
     }
 
     return (
       <div className="stick-meter" style={stickStyle}>
         <h5>{name} Stick Down</h5>
         <pre>{axis.toPrecision(3)}</pre>
-        <pre>PrevPercent: {prevPercents}</pre>
+        <pre>PrevPercent: {prevPercents[5]}</pre>
         <pre>Count: {count}</pre>
         <pre>Pressed: {pressed.toString()}</pre>
         <ColorMeter className={className} percentage={axis} />
