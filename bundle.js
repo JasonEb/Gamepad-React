@@ -29430,7 +29430,9 @@
 	
 	    var _this = _possibleConstructorReturn(this, (StickMeter.__proto__ || Object.getPrototypeOf(StickMeter)).call(this, props));
 	
-	    _this.state = { count: 0 };
+	    _this.prevPercents = [];
+	    _this.count = 0;
+	    _this.pressed = false;
 	    return _this;
 	  }
 	
@@ -29440,7 +29442,9 @@
 	      var _props = this.props,
 	          axis = _props.axis,
 	          name = _props.name;
-	      var count = this.state.count;
+	      var prevPercents = this.prevPercents,
+	          count = this.count,
+	          pressed = this.pressed;
 	
 	      var className = name + '-stick-meter';
 	
@@ -29450,6 +29454,12 @@
 	        flexDirection: 'column',
 	        textAlign: 'center'
 	      };
+	
+	      this.pressed = axis > 0.10;
+	      // check if pressed
+	      if (pressed) {
+	        prevPercents.push(axis.toPrecision(3));
+	      }
 	
 	      return _react2.default.createElement(
 	        'div',
@@ -29468,8 +29478,20 @@
 	        _react2.default.createElement(
 	          'pre',
 	          null,
+	          'PrevPercent: ',
+	          prevPercents
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
 	          'Count: ',
 	          count
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          'Pressed: ',
+	          pressed.toString()
 	        ),
 	        _react2.default.createElement(_color_meter2.default, { className: className, percentage: axis })
 	      );

@@ -3,14 +3,16 @@ import React from 'react'
 import ColorMeter from './color_meter.jsx'
 
 class StickMeter extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
-    this.state = { count: 0 }
+    this.prevPercents = []
+    this.count = 0
+    this.pressed = false
   }
 
   render () {
     let { axis, name } = this.props
-    let { count } = this.state
+    let { prevPercents, count, pressed } = this
     let className = `${name}-stick-meter`
 
     let stickStyle = {
@@ -20,11 +22,19 @@ class StickMeter extends React.Component {
       textAlign: 'center'
     }
 
+    this.pressed = (axis > 0.10)
+    // check if pressed
+    if (pressed) {
+      prevPercents.push(axis.toPrecision(3))
+    }
+
     return (
       <div className="stick-meter" style={stickStyle}>
         <h5>{name} Stick Down</h5>
         <pre>{axis.toPrecision(3)}</pre>
+        <pre>PrevPercent: {prevPercents}</pre>
         <pre>Count: {count}</pre>
+        <pre>Pressed: {pressed.toString()}</pre>
         <ColorMeter className={className} percentage={axis} />
       </div>
   ) }
