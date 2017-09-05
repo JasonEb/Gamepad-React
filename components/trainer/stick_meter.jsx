@@ -27,8 +27,7 @@ class StickMeter extends React.Component {
     this.pressed = (axis > 0.20)
 
     // check if pressed
-    // begin collecting the last 6 percents
-    // if the last
+    // begin collecting the percents
     if (pressed) {
       let currentPercent = axis.toPrecision(3)
       let {shieldDropWindow} = this
@@ -55,6 +54,7 @@ class StickMeter extends React.Component {
         }
         console.log("prevpercents", prevPercents)
         console.log("Shield Dropped:", shieldDropped.toString())
+        this.count = (shieldDropped) ? this.count + 1 : 0
         this.shieldDropCheck = false
       }
 

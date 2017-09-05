@@ -29460,8 +29460,7 @@
 	      this.pressed = axis > 0.20;
 	
 	      // check if pressed
-	      // begin collecting the last 6 percents
-	      // if the last
+	      // begin collecting the percents
 	      if (pressed) {
 	        var currentPercent = axis.toPrecision(3);
 	        var shieldDropWindow = this.shieldDropWindow;
@@ -29489,6 +29488,7 @@
 	          }
 	          console.log("prevpercents", prevPercents);
 	          console.log("Shield Dropped:", shieldDropped.toString());
+	          this.count = shieldDropped ? this.count + 1 : 0;
 	          this.shieldDropCheck = false;
 	        }
 	      } else {
