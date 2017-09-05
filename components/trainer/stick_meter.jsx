@@ -8,6 +8,8 @@ class StickMeter extends React.Component {
     this.prevPercents = []
     this.count = 0
     this.pressed = false
+    this.shieldDropCheck = true
+    this.shieldDropWindow = 16
   }
 
   render () {
@@ -22,16 +24,44 @@ class StickMeter extends React.Component {
       textAlign: 'center'
     }
 
-    this.pressed = (axis > 0.10)
+    this.pressed = (axis > 0.20)
+
     // check if pressed
+    // begin collecting the last 6 percents
+    // if the last
     if (pressed) {
-      if (prevPercents.length <= 6) {
-        prevPercents.push(axis.toPrecision(3))
-      } else {
-        prevPercents.shift()
-        prevPercents.push(axis)
-        console.log(prevPercents)
+      let currentPercent = axis.toPrecision(3)
+      let {shieldDropWindow} = this
+
+      // percents history
+      if (prevPercents.length < shieldDropWindow) {
+        prevPercents.push(currentPercent)
       }
+
+      if (this.shieldDropCheck && prevPercents.length >= shieldDropWindow) {
+        let shieldDropped = false
+
+        //scan frames for shield drop
+        for (let idx = 0; idx < prevPercents.length; idx++) {
+          let currentPercent = prevPercents[idx]
+          if (currentPercent > 0.70) {
+            shieldDropped = false
+            break;
+          }
+
+          if (currentPercent > 0.63) {
+            shieldDropped = true
+          }
+        }
+        console.log("prevpercents", prevPercents)
+        console.log("Shield Dropped:", shieldDropped.toString())
+        this.shieldDropCheck = false
+      }
+
+    } else {
+      //if stick is released, reset shield drop check
+      this.shieldDropCheck = true
+      this.prevPercents = []
     }
 
     return (

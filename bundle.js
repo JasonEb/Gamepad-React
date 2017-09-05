@@ -29433,6 +29433,8 @@
 	    _this.prevPercents = [];
 	    _this.count = 0;
 	    _this.pressed = false;
+	    _this.shieldDropCheck = true;
+	    _this.shieldDropWindow = 16;
 	    return _this;
 	  }
 	
@@ -29455,16 +29457,44 @@
 	        textAlign: 'center'
 	      };
 	
-	      this.pressed = axis > 0.10;
+	      this.pressed = axis > 0.20;
+	
 	      // check if pressed
+	      // begin collecting the last 6 percents
+	      // if the last
 	      if (pressed) {
-	        if (prevPercents.length <= 6) {
-	          prevPercents.push(axis.toPrecision(3));
-	        } else {
-	          prevPercents.shift();
-	          prevPercents.push(axis);
-	          console.log(prevPercents);
+	        var currentPercent = axis.toPrecision(3);
+	        var shieldDropWindow = this.shieldDropWindow;
+	
+	        // percents history
+	
+	        if (prevPercents.length < shieldDropWindow) {
+	          prevPercents.push(currentPercent);
 	        }
+	
+	        if (this.shieldDropCheck && prevPercents.length >= shieldDropWindow) {
+	          var shieldDropped = false;
+	
+	          //scan frames for shield drop
+	          for (var idx = 0; idx < prevPercents.length; idx++) {
+	            var _currentPercent = prevPercents[idx];
+	            if (_currentPercent > 0.70) {
+	              shieldDropped = false;
+	              break;
+	            }
+	
+	            if (_currentPercent > 0.63) {
+	              shieldDropped = true;
+	            }
+	          }
+	          console.log("prevpercents", prevPercents);
+	          console.log("Shield Dropped:", shieldDropped.toString());
+	          this.shieldDropCheck = false;
+	        }
+	      } else {
+	        //if stick is released, reset shield drop check
+	        this.shieldDropCheck = true;
+	        this.prevPercents = [];
 	      }
 	
 	      return _react2.default.createElement(
