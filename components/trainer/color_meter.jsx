@@ -11,7 +11,7 @@ class ColorMeter extends React.Component {
     // turns red if over 0.70
     if (percentage >= 0.70) {
       color = `rgb(255, 0, 0)`
-    } else if (percentage >= 0.63 && percentage < 0.70) {
+    } else if (percentage > 0.60 && percentage < 0.70) {
       color = `rgb(0, 255 , 0)`
     } else {
       color = `rgb(255, 255, 0)`

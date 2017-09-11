@@ -29438,6 +29438,7 @@
 	    _this.pressed = false;
 	    _this.shieldDropCheck = true;
 	    _this.shieldDropWindow = 16;
+	    _this.shieldDropPct = 0.60;
 	    return _this;
 	  }
 	
@@ -29452,7 +29453,8 @@
 	          attempts = this.attempts,
 	          pressed = this.pressed,
 	          maxScore = this.maxScore,
-	          count = this.count;
+	          count = this.count,
+	          shieldDropPct = this.shieldDropPct;
 	
 	      var className = name + '-stick-meter';
 	
@@ -29489,7 +29491,7 @@
 	              break;
 	            }
 	
-	            if (_currentPercent > 0.63) {
+	            if (_currentPercent > shieldDropPct) {
 	              // if any axis percent is above, shield drop is triggered
 	              shieldDropped = true;
 	            }
@@ -29530,18 +29532,7 @@
 	          null,
 	          axis.toPrecision(3)
 	        ),
-	        _react2.default.createElement(
-	          'pre',
-	          null,
-	          'Successes: ',
-	          successes
-	        ),
-	        _react2.default.createElement(
-	          'pre',
-	          null,
-	          'Attempts: ',
-	          attempts
-	        ),
+	        _react2.default.createElement(_color_meter2.default, { className: className, percentage: axis }),
 	        _react2.default.createElement(
 	          'pre',
 	          null,
@@ -29557,7 +29548,19 @@
 	        _react2.default.createElement(
 	          'pre',
 	          null,
-	          'Shield Drop Pct: ',
+	          'Successes: ',
+	          successes
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          'Attempts: ',
+	          attempts
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          'Drop Pct: ',
 	          (successes / attempts).toPrecision(2)
 	        ),
 	        _react2.default.createElement(
@@ -29565,8 +29568,7 @@
 	          null,
 	          'Pressed: ',
 	          pressed.toString()
-	        ),
-	        _react2.default.createElement(_color_meter2.default, { className: className, percentage: axis })
+	        )
 	      );
 	    }
 	  }]);
@@ -29622,7 +29624,7 @@
 	      // turns red if over 0.70
 	      if (percentage >= 0.70) {
 	        color = 'rgb(255, 0, 0)';
-	      } else if (percentage >= 0.63 && percentage < 0.70) {
+	      } else if (percentage > 0.60 && percentage < 0.70) {
 	        color = 'rgb(0, 255 , 0)';
 	      } else {
 	        color = 'rgb(255, 255, 0)';

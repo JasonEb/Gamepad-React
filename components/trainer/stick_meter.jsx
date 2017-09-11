@@ -13,11 +13,12 @@ class StickMeter extends React.Component {
     this.pressed = false
     this.shieldDropCheck = true
     this.shieldDropWindow = 16
+    this.shieldDropPct = 0.60
   }
 
   render () {
     let { axis, name } = this.props
-    let { prevPercents, successes, attempts, pressed, maxScore, count } = this
+    let { prevPercents, successes, attempts, pressed, maxScore, count, shieldDropPct } = this
     let className = `${name}-stick-meter`
 
     let stickStyle = {
@@ -52,7 +53,7 @@ class StickMeter extends React.Component {
             break;
           }
 
-          if (currentPercent > 0.63) {
+          if (currentPercent > shieldDropPct) {
             // if any axis percent is above, shield drop is triggered
             shieldDropped = true
           }
@@ -84,13 +85,13 @@ class StickMeter extends React.Component {
       <div className="stick-meter" style={stickStyle}>
         <h5>{name} Stick Down</h5>
         <pre>{axis.toPrecision(3)}</pre>
-        <pre>Successes: {successes}</pre>
-        <pre>Attempts: {attempts}</pre>
+        <ColorMeter className={className} percentage={axis} />
         <pre>Count: {count}</pre>
         <pre>Score: {maxScore}</pre>
-        <pre>Shield Drop Pct: {(successes / attempts).toPrecision(2)}</pre>
+        <pre>Successes: {successes}</pre>
+        <pre>Attempts: {attempts}</pre>
+        <pre>Drop Pct: {(successes / attempts).toPrecision(2)}</pre>
         <pre>Pressed: {pressed.toString()}</pre>
-        <ColorMeter className={className} percentage={axis} />
       </div>
   ) }
 }
