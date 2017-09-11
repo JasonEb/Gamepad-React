@@ -29526,6 +29526,8 @@
 	        this.shieldDropCheck = true;
 	        this.prevPercents = [];
 	      }
+	      var dropPct = successes / attempts;
+	      dropPct = attempts === 0 ? 0 : (dropPct * 100).toPrecision(4);
 	
 	      return _react2.default.createElement(
 	        'div',
@@ -29535,11 +29537,6 @@
 	          null,
 	          name,
 	          ' Stick Down'
-	        ),
-	        _react2.default.createElement(
-	          'pre',
-	          null,
-	          axis.toPrecision(3)
 	        ),
 	        _react2.default.createElement(_color_meter2.default, { className: className, percentage: axis }),
 	        _react2.default.createElement(
@@ -29569,8 +29566,8 @@
 	        _react2.default.createElement(
 	          'pre',
 	          null,
-	          'Drop Pct: ',
-	          (successes / attempts).toPrecision(2)
+	          'Drop Pct: %',
+	          dropPct
 	        ),
 	        _react2.default.createElement(
 	          'button',
@@ -29653,7 +29650,16 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'color-meter', style: meterStyle },
-	        _react2.default.createElement('div', { className: 'color-square', style: squareStyle })
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'color-square', style: squareStyle },
+	          _react2.default.createElement(
+	            'pre',
+	            null,
+	            '%',
+	            (percentage * 100).toPrecision(3)
+	          )
+	        )
 	      );
 	    }
 	  }]);

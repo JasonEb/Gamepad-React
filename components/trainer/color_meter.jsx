@@ -31,7 +31,9 @@ class ColorMeter extends React.Component {
 
     return (
       <div className='color-meter' style={meterStyle}>
-        <div className="color-square" style={squareStyle} />
+        <div className="color-square" style={squareStyle}>
+        <pre>%{(percentage * 100).toPrecision(3)}</pre>
+        </div>
       </div>
   ) }
 }

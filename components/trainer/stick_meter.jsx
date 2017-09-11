@@ -88,17 +88,18 @@ class StickMeter extends React.Component {
       this.shieldDropCheck = true
       this.prevPercents = []
     }
+    let dropPct = (successes / attempts)
+    dropPct = (attempts === 0) ? 0 : (dropPct * 100).toPrecision(4)
 
     return (
       <div className="stick-meter" style={stickStyle}>
         <h5>{name} Stick Down</h5>
-        <pre>{axis.toPrecision(3)}</pre>
         <ColorMeter className={className} percentage={axis} />
         <pre>Count: {count}</pre>
         <pre>Score: {maxScore}</pre>
         <pre>Successes: {successes}</pre>
         <pre>Attempts: {attempts}</pre>
-        <pre>Drop Pct: {(successes / attempts).toPrecision(2)}</pre>
+        <pre>Drop Pct: %{dropPct}</pre>
         <button onClick={resetSession}>Reset</button>
       </div>
   ) }
