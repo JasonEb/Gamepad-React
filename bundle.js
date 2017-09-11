@@ -29431,6 +29431,9 @@
 	    var _this = _possibleConstructorReturn(this, (StickMeter.__proto__ || Object.getPrototypeOf(StickMeter)).call(this, props));
 	
 	    _this.prevPercents = [];
+	    _this.successes = 0;
+	    _this.attempts = 0;
+	    _this.maxScore = 0;
 	    _this.count = 0;
 	    _this.pressed = false;
 	    _this.shieldDropCheck = true;
@@ -29445,8 +29448,11 @@
 	          axis = _props.axis,
 	          name = _props.name;
 	      var prevPercents = this.prevPercents,
-	          count = this.count,
-	          pressed = this.pressed;
+	          successes = this.successes,
+	          attempts = this.attempts,
+	          pressed = this.pressed,
+	          maxScore = this.maxScore,
+	          count = this.count;
 	
 	      var className = name + '-stick-meter';
 	
@@ -29464,13 +29470,13 @@
 	      if (pressed) {
 	        var currentPercent = axis.toPrecision(3);
 	        var shieldDropWindow = this.shieldDropWindow;
-	
 	        // percents history
 	
 	        if (prevPercents.length < shieldDropWindow) {
 	          prevPercents.push(currentPercent);
 	        }
 	
+	        //when shield drop window is full, shield drop check
 	        if (this.shieldDropCheck && prevPercents.length >= shieldDropWindow) {
 	          var shieldDropped = false;
 	
@@ -29478,18 +29484,31 @@
 	          for (var idx = 0; idx < prevPercents.length; idx++) {
 	            var _currentPercent = prevPercents[idx];
 	            if (_currentPercent > 0.70) {
+	              // failed shield drop
 	              shieldDropped = false;
 	              break;
 	            }
 	
 	            if (_currentPercent > 0.63) {
+	              // if any axis percent is above, shield drop is triggered
 	              shieldDropped = true;
 	            }
 	          }
+	
+	          if (shieldDropped) {
+	            this.successes++;
+	            this.count++;
+	          } else {
+	            this.maxScore = this.count > this.maxScore ? this.count : this.maxScore;
+	            this.count = 0;
+	          }
+	
+	          this.attempts++;
+	          this.shieldDropCheck = false;
 	          console.log("prevpercents", prevPercents);
 	          console.log("Shield Dropped:", shieldDropped.toString());
-	          this.count = shieldDropped ? this.count + 1 : 0;
-	          this.shieldDropCheck = false;
+	          console.log("Attempts: ", attempts);
+	          console.log("Successes: ", successes);
 	        }
 	      } else {
 	        //if stick is released, reset shield drop check
@@ -29514,14 +29533,32 @@
 	        _react2.default.createElement(
 	          'pre',
 	          null,
-	          'PrevPercent: ',
-	          prevPercents[5]
+	          'Successes: ',
+	          successes
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          'Attempts: ',
+	          attempts
 	        ),
 	        _react2.default.createElement(
 	          'pre',
 	          null,
 	          'Count: ',
 	          count
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          'Score: ',
+	          maxScore
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          'Shield Drop Pct: ',
+	          (successes / attempts).toPrecision(2)
 	        ),
 	        _react2.default.createElement(
 	          'pre',

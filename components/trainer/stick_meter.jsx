@@ -6,6 +6,9 @@ class StickMeter extends React.Component {
   constructor (props) {
     super(props)
     this.prevPercents = []
+    this.successes = 0
+    this.attempts = 0
+    this.maxScore = 0
     this.count = 0
     this.pressed = false
     this.shieldDropCheck = true
@@ -14,7 +17,7 @@ class StickMeter extends React.Component {
 
   render () {
     let { axis, name } = this.props
-    let { prevPercents, count, pressed } = this
+    let { prevPercents, successes, attempts, pressed, maxScore, count } = this
     let className = `${name}-stick-meter`
 
     let stickStyle = {
@@ -31,12 +34,12 @@ class StickMeter extends React.Component {
     if (pressed) {
       let currentPercent = axis.toPrecision(3)
       let {shieldDropWindow} = this
-
       // percents history
       if (prevPercents.length < shieldDropWindow) {
         prevPercents.push(currentPercent)
       }
 
+      //when shield drop window is full, shield drop check
       if (this.shieldDropCheck && prevPercents.length >= shieldDropWindow) {
         let shieldDropped = false
 
@@ -44,18 +47,31 @@ class StickMeter extends React.Component {
         for (let idx = 0; idx < prevPercents.length; idx++) {
           let currentPercent = prevPercents[idx]
           if (currentPercent > 0.70) {
+            // failed shield drop
             shieldDropped = false
             break;
           }
 
           if (currentPercent > 0.63) {
+            // if any axis percent is above, shield drop is triggered
             shieldDropped = true
           }
         }
+
+        if (shieldDropped) {
+          this.successes++
+          this.count++
+        } else {
+          this.maxScore = this.count > this.maxScore ? this.count : this.maxScore
+          this.count = 0
+        }
+
+        this.attempts++
+        this.shieldDropCheck = false
         console.log("prevpercents", prevPercents)
         console.log("Shield Dropped:", shieldDropped.toString())
-        this.count = (shieldDropped) ? this.count + 1 : 0
-        this.shieldDropCheck = false
+        console.log("Attempts: ", attempts)
+        console.log("Successes: ", successes)
       }
 
     } else {
@@ -68,8 +84,11 @@ class StickMeter extends React.Component {
       <div className="stick-meter" style={stickStyle}>
         <h5>{name} Stick Down</h5>
         <pre>{axis.toPrecision(3)}</pre>
-        <pre>PrevPercent: {prevPercents[5]}</pre>
+        <pre>Successes: {successes}</pre>
+        <pre>Attempts: {attempts}</pre>
         <pre>Count: {count}</pre>
+        <pre>Score: {maxScore}</pre>
+        <pre>Shield Drop Pct: {(successes / attempts).toPrecision(2)}</pre>
         <pre>Pressed: {pressed.toString()}</pre>
         <ColorMeter className={className} percentage={axis} />
       </div>
