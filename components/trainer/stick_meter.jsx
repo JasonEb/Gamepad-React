@@ -14,11 +14,19 @@ class StickMeter extends React.Component {
     this.shieldDropCheck = true
     this.shieldDropWindow = 16
     this.shieldDropPct = 0.60
+    this.resetSession = this.resetSession.bind(this)
+  }
+
+  resetSession () {
+    this.successes = 0
+    this.attempts = 0
+    this.maxScore = 0
+    this.count = 0
   }
 
   render () {
     let { axis, name } = this.props
-    let { prevPercents, successes, attempts, pressed, maxScore, count, shieldDropPct } = this
+    let { prevPercents, successes, attempts, pressed, maxScore, count, shieldDropPct,resetSession } = this
     let className = `${name}-stick-meter`
 
     let stickStyle = {
@@ -91,7 +99,7 @@ class StickMeter extends React.Component {
         <pre>Successes: {successes}</pre>
         <pre>Attempts: {attempts}</pre>
         <pre>Drop Pct: {(successes / attempts).toPrecision(2)}</pre>
-        <pre>Pressed: {pressed.toString()}</pre>
+        <button onClick={resetSession}>Reset</button>
       </div>
   ) }
 }

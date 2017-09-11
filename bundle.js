@@ -21567,7 +21567,6 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement(_navbar2.default, null),
 	          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _trainer2.default }),
 	          _react2.default.createElement(_reactRouterDom.Route, { path: '/debug', component: _gamepads_container2.default }),
 	          _react2.default.createElement(_reactRouterDom.Route, { path: '/trainer', component: _trainer2.default }),
@@ -29439,10 +29438,19 @@
 	    _this.shieldDropCheck = true;
 	    _this.shieldDropWindow = 16;
 	    _this.shieldDropPct = 0.60;
+	    _this.resetSession = _this.resetSession.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(StickMeter, [{
+	    key: 'resetSession',
+	    value: function resetSession() {
+	      this.successes = 0;
+	      this.attempts = 0;
+	      this.maxScore = 0;
+	      this.count = 0;
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props,
@@ -29454,7 +29462,8 @@
 	          pressed = this.pressed,
 	          maxScore = this.maxScore,
 	          count = this.count,
-	          shieldDropPct = this.shieldDropPct;
+	          shieldDropPct = this.shieldDropPct,
+	          resetSession = this.resetSession;
 	
 	      var className = name + '-stick-meter';
 	
@@ -29564,10 +29573,9 @@
 	          (successes / attempts).toPrecision(2)
 	        ),
 	        _react2.default.createElement(
-	          'pre',
-	          null,
-	          'Pressed: ',
-	          pressed.toString()
+	          'button',
+	          { onClick: resetSession },
+	          'Reset'
 	        )
 	      );
 	    }
