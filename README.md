@@ -4,4 +4,4 @@ It utilizes the experimental [`Gamepad API`](https://developer.mozilla.org/en-US
 
 Currently looks like:  
 
-![ornateheavybluebottle](https://cloud.githubusercontent.com/assets/6300995/22675473/c3a1d8ac-ec9a-11e6-8ac4-ea1759c25829.gif)
+![ornateheavybluebottle](https://thumbs.gfycat.com/AgitatedLiquidAmericancrayfish-size_restricted.gif)
