@@ -79,13 +79,19 @@ class Trainer extends React.Component {
 
   render () {
     let _shieldDropPads = Object.keys(this.state.controllers).map((key, idx) => {
-      return <ShieldDropPad gamepad={this.state.controllers[key]} key={idx} />
+      return <li><ShieldDropPad gamepad={this.state.controllers[key]} key={idx} /></li>
     })
 
+    let containerCSS = {
+      display: 'flex',
+      flexWrap: 'wrap',
+      flexDirection: 'row'
+    }
+
     return (
-      <div id="shield-drop-pads-container">
+      <div id="shield-drop-pads-container"  >
         <h3>Shield Drop Trainer</h3>
-        {_shieldDropPads}
+        <ol reversed style={containerCSS}>{_shieldDropPads}</ol>
       </div>
     )
   }
